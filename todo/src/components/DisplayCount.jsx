@@ -1,15 +1,19 @@
 import React from 'react'
 import { Container,Card } from 'react-bootstrap'
-function DisplayCount() {
+import { connect } from 'react-redux'
+function DisplayCount({todos}) {
   return (
    <Container>
     <Card>
         <Card.Body>
-            <h3>No of todo:23</h3>
+            <h3>No of todo:{todos.length}</h3>
         </Card.Body>
     </Card>
    </Container>
   )
 }
-
-export default DisplayCount
+const mapStateToProps=(state)=>{
+    return {todos:state.todoReducer}
+}
+const mapDisptchToProps=(Dispatch)=>({});
+export default connect(mapStateToProps,mapDisptchToProps) (DisplayCount)

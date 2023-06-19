@@ -1,19 +1,25 @@
 import React from 'react'
 import { useState } from 'react'
 import { Container,Card ,Row,Col,Form, FormGroup, FormLabel, FormControl, Button} from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { v4 } from 'uuid'
+import { addtodo } from '../Redux/Actions/Todo'
 
-function AddTodos() {
+function AddTodos({addtodo}) {
     const [todo,SetTodo]=useState({
         title:'',
-        description:''
+        description:'',
+        id:''
     })
     const handleSubmit=(event)=>{
         event.preventDefault();
         //add todo
-        console.log(todo);
+        addtodo({...todo,id:v4()})
+       // console.log(todo);
         SetTodo({
             title:'',
-            description:''
+            description:'',
+            
         })
     }
   return (
@@ -50,5 +56,8 @@ function AddTodos() {
    </Container>
   )
 }
-
-export default AddTodos
+const mapStateToProps=(state)=>({});
+const mapDisptchToProps=(Dispatch)=>({
+    addtodo:(todo)=>(Dispatch(addtodo(todo)))
+});
+export default connect(mapStateToProps,mapDisptchToProps) (AddTodos)

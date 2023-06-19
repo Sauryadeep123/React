@@ -4,6 +4,7 @@ const initialState=[];
 export default (state=initialState,action)=>{
     switch(action.type){
         case ADD_TODO:
+            console.log("add todos "+{})
             return [...state,action.payload];
     
         case DELETE_TODO:
